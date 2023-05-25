@@ -1,0 +1,53 @@
+<?php
+$fio = $_POST['fio'];
+$email = $_POST['email'];
+$fio = htmlspecialchars($fio);
+$email = htmlspecialchars($email);
+$fio = urldecode($fio);
+$email = urldecode($email);
+$fio = trim($fio);
+$email = trim($email);
+// несколько получателей
+$to = '.$email.'; // обратите внимание на запятую
+
+// тема письма
+$subject = 'Результаты теста на знание английского';
+
+// текст письма
+$message = '
+<!DOCTYPE html>
+<html>
+<body>
+  <div style="width:100%;max-width:600px;margin:10px auto"><div class="adM">            </div><div style="background-color:#3e8ef7"><div class="adM">                </div><table style="background-color:#383573;width:100%">                    <tbody><tr>                        <td style="width:65px">                            <a href="https://onlinetestpad.com" style="text-decoration:none;display:block;margin:5px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://onlinetestpad.com&amp;source=gmail&amp;ust=1685085355073000&amp;usg=AOvVaw1zF8wSx_v4XWIrOEpeHTvI">                                <img style="border:none" alt="CE">                            </a>                        </td>                        <td>                            <a href="https://onlinetestpad.com" style="text-decoration:none;display:block;margin:5px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://onlinetestpad.com&amp;source=gmail&amp;ust=1685085355073000&amp;usg=AOvVaw1zF8wSx_v4XWIrOEpeHTvI">                                <span style="font-size:35px;color:#fff;margin-top:5px;text-decoration:none;display:block">Check English</span>                            </a>                        </td>                    </tr>                </tbody></table>            </div>            <div style="border:solid 1px #ccc;border-top:none;line-height:20px">                <div></div>                <div style="background-color:#f7f7f7">                    <table style="width:100%" cellpadding="0" cellspacing="0">                        <tbody><tr>                            <td>                                <h2 style="color:#4765a0;margin:10px;font-size:20px;font-weight:normal;margin:10px">                                    Результат теста на знание английского                                </h2>                            </td>                        </tr>                    </tbody></table>                </div>                <div style="margin:10px">                    <div>                        "Здравствуйте, .$fio.!"<br><br>Ваш результат прохождения теста.<div style="margin:15px 0px 15px 10px">   <div style="margin-top:10px;display:none">        <b style="font-size:13px">Форма регистрации:</b>        <div style="margin-left:20px">                    </div>    </div>    <div style="margin-top:10px">        <b style="font-size:13px">Правильные ответы: <ol>
+  <li>A lot of stars ___ in the sky at night. - Ответ: are seen</li>
+  <br>
+  <li>This information ___ on the Internet. - Ответ: is easily found</li>
+  <br>
+  <li>Small towns ___ by cars. - Ответ: aren’t blocked</li>
+  <br>
+  <li>This song ___ here. - Ответ: is often sung</li>
+  <br>
+  <li>The novel is written ___ a famous writer. - Ответ: by</li>
+  <br>
+  <li>The office ___ every day. - Ответ: isn’t cleaned</li>
+  <br>
+  <li>___ the milk ___ in the morning or in the afternoon? - Ответ: Is, delivered</li>
+  <br>
+  <li>Water covers most of the Earth’s surface. Выберите верный способ перефразировать: - Ответ: Most of the Earth’s surface is covered by water.</li>
+  <br>
+  <li>___ grammar rules always ___ by heart? - Ответ: Are, learnt</li>
+  <br>
+  <li>English ___ here. - Ответ: is spoken</li>
+  </ol></b>            </div>    <div style="margin:10px 0px">            </div></div>                    </div>                    <div style="margin-top:15px">                        С уважением,<br>                        Ваш Check English.                    </div>                    <div style="margin-top:15px;font-size:12px;color:#999;border-top:solid 1px #eee">                        <div style="margin:5px 5px 0px 5px">                            Данное письмо отправлено автоматически. Не отвечайте на этот адрес.                        </div><div class="yj6qo"></div><div class="adL">                                            </div></div><div class="adL">                </div></div><div class="adL">            </div></div><div class="adL">        </div></div>
+    </body>
+    </html>
+
+';
+
+// Для отправки HTML-письма должен быть установлен заголовок Content-type
+$headers  = 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+// Отправляем
+mail($to, $subject, $message, implode("\r\n", $headers));
+?>
